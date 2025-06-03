@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import SplineViewer from '../components/SplineViewer'
 import OrderConfirmation from '../components/OrderConfirmation'
 
@@ -9,7 +9,10 @@ const page = () => {
                <SplineViewer />
                </div>
                <div className=" z-10   w-[90%] md:w-[60%] py-5 md:py-10  rounded-4xl  ">
-                           <OrderConfirmation />
+                 <Suspense fallback={<div>Loading...</div>}>
+                  <OrderConfirmation />
+                 </Suspense>
+                          
    
                </div>
         

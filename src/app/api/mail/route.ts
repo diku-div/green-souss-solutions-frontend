@@ -10,6 +10,11 @@ type OrderMailRequest = {
   totalPrice: string | number;
 };
 
+type ResendEmailResponse = {
+  data?: { id: string };
+  error?: { message: string };
+};
+
 export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as Partial<OrderMailRequest>;
@@ -22,7 +27,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const data = await resend.emails.send({
+    const response = (await resend.emails.send({
       from: 'green-souss-solutions <onboarding@resend.dev>',
       to: [customerEmail],
       subject: `Order Confirmation - #${orderId}`,
@@ -69,16 +74,20 @@ export async function POST(req: NextRequest) {
        </footer>
        </section>
       `,
-    });
+    })) as ResendEmailResponse;
 
     return NextResponse.json({
       message: 'Email sent',
-      id: (data as any)?.data?.id,
+      id: response?.data?.id,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error sending email:', error);
+
+    const errorMessage =
+      error instanceof Error ? error.message : 'Unknown error';
+
     return NextResponse.json(
-      { message: 'Failed to send email', error: error?.message ?? 'Unknown error' },
+      { message: 'Failed to send email', error: errorMessage },
       { status: 500 }
     );
   }

@@ -1,6 +1,7 @@
 
 
 'use client';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 interface props {
@@ -52,7 +53,7 @@ const Profile = () => {
       {/* Profile Card */}
       <div className="bg-white/70 rounded-xl shadow p-6 flex items-center gap-4">
         <div className="relative">
-          <img
+          <Image
                  src={`http://localhost:8000/storage/${admin.picture_url}`}
             alt="Profile"
             className="md:w-20 md:h-20  w-15 h-15 rounded-full object-cover"
