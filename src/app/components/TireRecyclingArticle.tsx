@@ -1,6 +1,6 @@
 'use client';
 import Image from "next/image";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname} from "next/navigation";
 import { useEffect } from "react";
 
 

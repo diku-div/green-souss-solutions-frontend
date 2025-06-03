@@ -1,6 +1,4 @@
-import { Contact, icons, Mail, MapPin, MessageCircle } from "lucide-react";
-import { title } from "process";
-import { ReactNode } from "react";
+import { Mail, MapPin, MessageCircle } from "lucide-react";
 
 
 

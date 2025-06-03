@@ -3,7 +3,6 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import Button from './Button';
 import { CameraIcon } from 'lucide-react';
-import { DeleteButton } from './DeleteButton';
 
 interface AdminData {
   id: string;

@@ -5,14 +5,13 @@ import { stats } from "./constants/statecardinfo";
 import StatCard from "./components/StateCard";
 import TireManagement from "./components/TireManagement";
 import CardEfficient from "./components/CardEfficient";
-import { Mail, MapPin, Menu, MessageCircle, Recycle, Sparkle, User } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Recycle, Sparkle, User } from "lucide-react";
 import CartFutur from "./components/CartFutur";
 import { testimonialData } from "./constants/TestimonialCard";
 import TestimonialCard from "./components/TestimonialCard";
 import Link from "next/link";
 import QuestionAnswer from "./components/QuestionAnswer";
 import { questioninfo } from "./constants/questioninfo";
-import { cartcontact } from "./constants/cartcontact";
 import Footer from "./components/Footer";
 
 
@@ -25,7 +24,7 @@ export default function Home() {
                  <p className="text-black/60 max-w-lg text-md md:text-lg text-center md:text-start font-extralight ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae fugiat tempora temporibus laborum quasi quas, maxime a iure, dolorum quaerat ea. Sunt deserunt accusantium, optio quas modi incidunt sapiente itaque.</p>
                 <div className=" md:gap-5 gap-3 flex flex-row">
                   <Link href={'/Article#Solutions'}><Button variante="primary" children='Learn more '/></Link> 
-                 <Button variante="secondary" children='Contact us'/>
+                 <Link href={'#Contact'}>  <Button variante="secondary" children='Contact us'/></Link>
                 </div>
         </div>
             <div className="relative order-1 md:order-2">

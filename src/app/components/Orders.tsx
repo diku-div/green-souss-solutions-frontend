@@ -66,6 +66,7 @@ const Orders: React.FC = () => {
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
+        alert( error);
       }
     }
   };

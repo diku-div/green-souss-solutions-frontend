@@ -1,9 +1,8 @@
 "use client";
-import { navLinks, navphonelinks } from '@/app/constants/navlinks';
-import {  ChevronDown, ChevronUp, Menu , X} from 'lucide-react'
+import {  navphonelinks } from '@/app/constants/navlinks';
+import {   Menu , X} from 'lucide-react'
 import Link from 'next/link';
 import { useState } from 'react'
-import Servicesmobile from './Servicesmobile';
 
 
 const Mobilenav = () => {

@@ -1,5 +1,4 @@
 'use client';
-import { sendEmailResnd } from '@/app/lib/resent';
 import { Frown, Smile } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';

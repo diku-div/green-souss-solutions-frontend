@@ -9,6 +9,7 @@
     "lint": "next lint",
     "email": "email dev"
   },
+  
   "dependencies": {
     "@react-email/components": "0.0.41",
     "@splinetool/react-spline": "^4.0.0",

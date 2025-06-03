@@ -2,10 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Spline } from 'lucide-react';
-import SplineViewer from './SplineViewer';
-import OrderDetails from './OrderDetails';
-import Link from 'next/link';
 import Button from './Button';
  
 

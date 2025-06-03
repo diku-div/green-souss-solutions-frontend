@@ -2,7 +2,6 @@
 
 'use client';
 import { useEffect, useState } from 'react';
-import { Camera } from 'lucide-react'
 
 interface props {
     first_name: string;

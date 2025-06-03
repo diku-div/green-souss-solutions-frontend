@@ -1,9 +1,6 @@
 'use client';
 import React, { useState } from "react";
-import { Pencil,  Edit, Camera, Filter } from "lucide-react";
 import ChartPage from "./ChartPage";
-import VisitorCounter from "./VisitorCounter";
-import CategoryFilter from "./CategoryFilter";
 import SettingsPage from "./SettingsPage";
 import Profile from "./profile";
 import Orders from "./Orders";
