@@ -83,7 +83,7 @@ export default function OrderID() {
 
   {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
 
-  <Button variante='primary' children='search on your order' isfullwidth/>
+  <Button variante='primary'  isfullwidth>search on your order</Button>
 </form>
 
 

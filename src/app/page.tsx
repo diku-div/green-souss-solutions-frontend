@@ -23,8 +23,8 @@ export default function Home() {
                  <Heading title="Innovative tire recycling solutions " />
                  <p className="text-black/60 max-w-lg text-md md:text-lg text-center md:text-start font-extralight ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae fugiat tempora temporibus laborum quasi quas, maxime a iure, dolorum quaerat ea. Sunt deserunt accusantium, optio quas modi incidunt sapiente itaque.</p>
                 <div className=" md:gap-5 gap-3 flex flex-row">
-                  <Link href={'/Article#Solutions'}><Button variante="primary" children='Learn more '/></Link> 
-                 <Link href={'#Contact'}>  <Button variante="secondary" children='Contact us'/></Link>
+                  <Link href={'/Article#Solutions'}><Button variante="primary" >Learn more</Button></Link> 
+                 <Link href={'#Contact'}>  <Button variante="secondary" >Contact us</Button></Link>
                 </div>
         </div>
             <div className="relative order-1 md:order-2">
@@ -73,7 +73,7 @@ export default function Home() {
         ensuring a sustainable future.
       </p>
       <Link href='/Article#Dammage' className="flex justify-center md:justify-start">
-      <Button variante="primary" children="Learn more" />
+      <Button variante="primary"  >Learn more</Button>
       </Link> 
     
     </div>
@@ -170,7 +170,7 @@ export default function Home() {
         <div className="flex flex-col items-center md:items-start space-y-2  pb-5">
          <p className="text-black/50 font-extralight" >Reach Out to Us</p>
          <h1 className="capitalize text-xl md:text-3xl text-black font-semibold ">Connect with Our Team</h1>
-         <p className="text-black/70 font-light text-center md:text-start ">We're here to assist with your inquiries.</p>
+         <p className="text-black/70 font-light text-center md:text-start ">We&apos;re here to assist with your inquiries.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
          <CardEfficient icon={<Mail/>}  title="Email Us" description="Our support team is ready to assist." contact="greensoussolutions.com"/>

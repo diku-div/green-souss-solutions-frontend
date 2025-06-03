@@ -4,6 +4,7 @@ import {
   PhoneIcon,
   MapPinIcon,
 }  from 'lucide-react';
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import {  useEffect, useState } from 'react';
 
@@ -40,7 +41,7 @@ export default function OrderDetails() {
         const data = await res.json();
         setOrder(data);
       } catch (err) {
-        setError('Error loading order data.');
+        setError('Error loading order data.'+err);
       } finally {
         setLoading(false);
       }
@@ -79,7 +80,7 @@ export default function OrderDetails() {
          
           {/* Product */}
           <div className="flex gap-4">
-            <img
+            <Image
               src="/product.png"
               alt="Smartwatch"
               className="w-28 h-28 object-contain rounded"

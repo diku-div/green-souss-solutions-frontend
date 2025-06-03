@@ -1,4 +1,4 @@
-import { Delete, Trash2 } from "lucide-react";
+import {  Trash2 } from "lucide-react";
 
 // components/DeleteButton.tsx
 type DeleteButtonProps = {

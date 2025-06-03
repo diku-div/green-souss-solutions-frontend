@@ -43,7 +43,7 @@ export default function Login() {
     console.log('Login successful:', data)
     router.push('/admin');
   } catch (err) {
-    setError('Something went wrong');
+    setError('Something went wrong:'+err);
   }
 };
 
@@ -98,7 +98,7 @@ export default function Login() {
               </a>
             </div> */}
             <div className='pt-5'>
-            <Button variante='primary' children='Log In' isfullwidth/>
+            <Button variante='primary'  isfullwidth>Log In</Button>
             </div>
           </form>
         </div>

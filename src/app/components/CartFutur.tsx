@@ -34,7 +34,7 @@ export default function CartFutur({
             {description}
           </p>
           <Link href={'/Article#Friendly'} className=" ">
-           <Button  variante="nature" children={`${buttonText}`} />
+           <Button  variante="nature" >{buttonText}</Button>
           </Link>
         </div>
       </div>

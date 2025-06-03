@@ -60,7 +60,7 @@ export default function OrderForm() {
         alert('Order failed!');
         return;
       }
-      const data = await res.json();
+       await res.json();
       alert('Order submitted successfully!');
       router.push(`/order_confirmation?nom=${form.nom}&prenom=${form.prenom}&email=${form.email}`);
     } catch (error) {

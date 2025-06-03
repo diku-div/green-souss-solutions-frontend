@@ -6,8 +6,7 @@ import { useState } from 'react'
 
 
 const Mobilenav = () => {
-    const [isopen , setIsopen] = useState <Boolean>(false)
-    const[visible, setVisible] = useState<boolean>(false)
+    const [isopen , setIsopen] = useState <boolean>(false)
     const togleMenu = () => {
         setIsopen(!isopen)
     }  

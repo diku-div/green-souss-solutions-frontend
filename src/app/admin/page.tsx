@@ -1,5 +1,4 @@
 import React from 'react'
-import OrderPage from '../order/page'
 import AdminDashboard from '../components/AdminDashboard'
 import SplineViewer from '../components/SplineViewer'
 

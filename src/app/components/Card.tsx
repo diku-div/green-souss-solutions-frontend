@@ -56,7 +56,7 @@ const Card: React.FC<CardProps> = ({
       {isTestimonial && (
         <>
           <h2 className="text-xl font-bold text-gray-800 mb-3">{title}</h2>
-          <p className="text-gray-600 mb-4 italic">"{description}"</p>
+          <p className="text-gray-600 mb-4 italic">{description}</p>
           <div className="mt-4">
             {authorName && <p className="font-semibold text-gray-800">{authorName}</p>}
             {authorCompany && <p className="text-gray-600 text-sm">{authorCompany}</p>}

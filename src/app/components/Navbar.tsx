@@ -32,7 +32,7 @@ const  Navbar : React.FC = () => {
             {link}
           </Link>
         ))}
-        <Link href='/order'><Button children='order now' variante="primary"/></Link>
+        <Link href='/order'><Button  variante="primary"/> order now</Link>
         
        </nav>
 

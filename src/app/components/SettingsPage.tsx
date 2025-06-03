@@ -3,6 +3,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import Button from './Button';
 import { CameraIcon } from 'lucide-react';
+import Image from 'next/image';
 
 interface AdminData {
   id: string;
@@ -45,7 +46,7 @@ export default function SettingsPage() {
         const data = await res.json();
         setFormData(data);
       } catch (err) {
-        setError('Error loading admin data.');
+        setError('Error loading admin data.'+err);
       } finally {
         setLoading(false);
       }
@@ -170,7 +171,7 @@ const handleSubmit = async (e: FormEvent) => {
           <section className='flex flex-col  md:flex-row justify-between items-center w-full'>
           <div className="flex items-center space-x-4 mb-6">
              <div className="relative">
-          <img
+          <Image
                  src={`http://localhost:8000/storage/${formData.picture_url}`}
             alt="Profile"
             className="w-20 h-20 rounded-full object-cover"
@@ -190,8 +191,7 @@ const handleSubmit = async (e: FormEvent) => {
             
           </div>
           <div>
-
-          <Button variante='secondary' children='Save Picture'/>
+          <Button variante='secondary' >Save Picture</Button>
           </div>
             </section>
       </form>
@@ -304,7 +304,7 @@ const handleSubmit = async (e: FormEvent) => {
 
         <div className="flex justify-end">
          
-          <Button variante='secondary' children='Save Profile '/>
+          <Button variante='secondary' >Save Profile</Button>
         </div>
       </form>
 
@@ -351,7 +351,7 @@ const handleSubmit = async (e: FormEvent) => {
              </section>
          <div className="flex justify-end mt-5">
          
-          <Button variante='secondary' children='Save Password'/>
+          <Button variante='secondary' >Save Password</Button>
         </div>
       </form>
     </div>
