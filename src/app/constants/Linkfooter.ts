@@ -1,0 +1,1 @@
+export const footerlink = [ 'About Us' , 'Contact' , 'FAQ'  , 'Admin' ]  as const 
