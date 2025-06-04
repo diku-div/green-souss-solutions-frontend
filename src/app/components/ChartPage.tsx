@@ -17,7 +17,7 @@ export default function ChartPage() {
 
 
     useEffect(() => {
-    fetch('http://localhost:8000/api/orders-per-month') // adjust for production
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/orders-per-month`) // adjust for production
       .then((res) => res.json())
       .then((data) => setOrderCounts(data))
       .catch((err) => console.error('Error fetching orders:', err));

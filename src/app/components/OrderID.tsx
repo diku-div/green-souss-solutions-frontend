@@ -16,7 +16,7 @@ export default function OrderID() {
   e.preventDefault();
 
   try {
-    const res = await fetch('http://localhost:8000/api/validate-order', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/validate-order`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

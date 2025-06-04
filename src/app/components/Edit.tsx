@@ -31,7 +31,7 @@ export default function Edit() {
        
          
          console.log('Fetching order for id:', id);
-        const res = await fetch(`http://localhost:8000/api/orders/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/orders/${id}`, {
           credentials: 'include',
         });
 
@@ -58,7 +58,7 @@ export default function Edit() {
   const updateStatus = async (newStatus: string) => {
     try {
       
-      const res = await fetch(`http://localhost:8000/api/orders/${id}/status`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/orders/${id}/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

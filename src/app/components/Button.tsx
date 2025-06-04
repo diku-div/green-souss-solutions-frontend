@@ -9,7 +9,7 @@ const Button: FC<ButtonProps> = ({variante='primary',isfullwidth,children}) => {
 
    if(variante === 'primary') {
      return (
-    <button type='submit' className={`relative px-8 py-2.5 overflow-hidden group bg-gradient-to-r from-green-100 to-green-600 hover:bg-gradient-to-r hover:from-green-200 hover:to-green-700 text-white transition-all ease-out duration-500 rounded-4xl ${isfullwidth ? 'w-full' : ''}`}>
+    <button type='submit' className={`relative px-8 py-2.5  overflow-hidden group bg-gradient-to-r from-green-100 to-green-600 hover:bg-gradient-to-r hover:from-green-200 hover:to-green-700 text-white transition-all ease-out duration-500 rounded-4xl ${isfullwidth ? 'w-full' : ''}`}>
       <span className={`absolute right-0 w-10 h-full top-0 transition-all  transform translate-x-12 bg-white opacity-10 -skew-x-12 ${isfullwidth ? 'group-hover:-translate-x-120 duration-2000' : 'group-hover:-translate-x-36 duration-1000'}  ease`} />
       <span className="relative text-sm md:text-lg font-semibold text-nowrap">{children}</span>
     </button>

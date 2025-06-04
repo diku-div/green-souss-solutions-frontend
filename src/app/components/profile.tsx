@@ -25,7 +25,7 @@ const Profile = () => {
     async function fetchOrder() {
       try {
         
-        const res = await fetch(`http://localhost:8000/api/admin/1`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/1`);
         if (!res.ok) throw new Error('Failed to fetch order');
         const data = await res.json();
         setAdmin(data);
@@ -54,7 +54,7 @@ const Profile = () => {
       <div className="bg-white/70 rounded-xl shadow p-6 flex items-center gap-4">
         <div className="relative">
           <Image
-                 src={`http://localhost:8000/storage/${admin.picture_url}`}
+                 src={`${process.env.NEXT_PUBLIC_API_URL}/storage/${admin.picture_url}`}
             alt="Profile"
             className="md:w-20 md:h-20  w-15 h-15 rounded-full object-cover"
           />

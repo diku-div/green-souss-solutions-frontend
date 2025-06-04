@@ -32,7 +32,7 @@ const Orders: React.FC = () => {
   useEffect(() => {
     async function fetchByStatus(status: string) {
       try {
-        const res = await fetch(`http://localhost:8000/api/orders/status/${status}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/orders/status/${status}`);
         const data = await res.json();
         setOrders(data);
       } catch (err) {
@@ -59,7 +59,7 @@ const Orders: React.FC = () => {
   };
      const handleSearch = async () => {
     try {
-      const res = await fetch(`http://localhost:8000/api/orders/${orderId}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/orders/${orderId}`);
       if (!res.ok) throw new Error('Order not found');
       // If found, redirect to edit page
       router.push(`/orders/${orderId}`);

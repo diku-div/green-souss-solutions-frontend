@@ -36,7 +36,7 @@ export default function OrderDetails() {
     async function fetchOrder() {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:8000/api/tracking/${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tracking/${id}`);
         if (!res.ok) throw new Error('Failed to fetch order');
         const data = await res.json();
         setOrder(data);
