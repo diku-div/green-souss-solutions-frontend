@@ -62,40 +62,44 @@ export default function OrderConfirmation() {
   }, [email, nom, prenom]); // ✅ Fix: include dependencies
 
   // Send email after order data is fetched
-  useEffect(() => {
-    if (orderdata && !emailSentRef.current) {
-      const sendEmail = async () => {
-        try {
-          const res = await fetch('/api/mail', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              customerEmail: orderdata.email,
-              orderId: orderdata.id,
-              customerfullname: `${orderdata.nom} ${orderdata.prenom}`,
-              totalPrice: orderdata.price,
-            }),
-          });
+useEffect(() => {
+  if (!orderdata) return;
 
-          if (!res.ok) {
-            const errorData = await res.json();
-            throw new Error(errorData.message || 'Failed to send email');
-          }
+  const sentKey = `emailSentForOrderId_${orderdata.id}`;
+  const alreadySent = localStorage.getItem(sentKey);
 
-          const result = await res.json();
-          console.log('✅ Email sent:', result);
+  if (alreadySent) {
+    emailSentRef.current = true; // prevent sending again
+    return;
+  }
 
-          emailSentRef.current = true; // ✅ Prevent resending
-        } catch (err) {
-          console.error('❌ Error sending email:', err);
-        }
-      };
+  if (!emailSentRef.current) {
+    const sendEmail = async () => {
+      try {
+        const res = await fetch('/api/mail', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            customerEmail: orderdata.email,
+            orderId: orderdata.id,
+            customerfullname: `${orderdata.nom} ${orderdata.prenom}`,
+            totalPrice: orderdata.price,
+          }),
+        });
 
-      sendEmail();
-    }
-  }, [orderdata]);
+        if (!res.ok) throw new Error('Failed to send email');
+
+        emailSentRef.current = true;
+        localStorage.setItem(sentKey, 'true'); // persist sent state
+        console.log('Email sent');
+      } catch (err) {
+        console.error('Error sending email:', err);
+      }
+    };
+
+    sendEmail();
+  }
+}, [orderdata]);
 
   // Loading state
   if (loading) {

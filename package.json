@@ -9,12 +9,12 @@
     "lint": "next lint",
     "email": "email dev"
   },
-  
   "dependencies": {
     "@react-email/components": "0.0.41",
     "@splinetool/react-spline": "^4.0.0",
     "lucide-react": "^0.510.0",
     "next": "15.3.2",
+    "nodemailer": "^7.0.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "recharts": "^2.15.3",
@@ -24,6 +24,7 @@
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
