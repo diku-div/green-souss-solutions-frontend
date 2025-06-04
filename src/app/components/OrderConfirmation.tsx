@@ -62,44 +62,34 @@ export default function OrderConfirmation() {
   }, [email, nom, prenom]); // ✅ Fix: include dependencies
 
   // Send email after order data is fetched
-useEffect(() => {
-  if (!orderdata) return;
-
-  const sentKey = `emailSentForOrderId_${orderdata.id}`;
-  const alreadySent = localStorage.getItem(sentKey);
-
-  if (alreadySent) {
-    emailSentRef.current = true; // prevent sending again
+  useEffect(() => {
+  const hasSent = localStorage.getItem(`email_sent_order_${orderdata?.id}`);
+  if (hasSent) {
+    console.log('Email already sent from frontend');
     return;
   }
 
-  if (!emailSentRef.current) {
-    const sendEmail = async () => {
-      try {
-        const res = await fetch('/api/mail', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            customerEmail: orderdata.email,
-            orderId: orderdata.id,
-            customerfullname: `${orderdata.nom} ${orderdata.prenom}`,
-            totalPrice: orderdata.price,
-          }),
-        });
+  // Only send once
+  fetch('/api/mail', {
+    method: 'POST',
+    body: JSON.stringify({
+      orderId:orderdata?.id,
+      customerEmail: email,
+      customerfullname: `${prenom} ${nom}`,
+      totalPrice:orderdata?.price
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log('✅ Email sent:', data);
+      localStorage.setItem(`email_sent_order_${orderdata?.id}`, 'true');
+    })
+    .catch((err) => {
+      console.error('❌ Failed to send email:', err);
+    });
+}, [orderdata?.id,email,prenom , nom, orderdata?.price]);
 
-        if (!res.ok) throw new Error('Failed to send email');
 
-        emailSentRef.current = true;
-        localStorage.setItem(sentKey, 'true'); // persist sent state
-        console.log('Email sent');
-      } catch (err) {
-        console.error('Error sending email:', err);
-      }
-    };
-
-    sendEmail();
-  }
-}, [orderdata]);
 
   // Loading state
   if (loading) {

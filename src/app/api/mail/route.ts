@@ -1,6 +1,9 @@
 import nodemailer from 'nodemailer';
 import { NextRequest, NextResponse } from 'next/server';
 
+// ✅ Server-side memory to track sent emails (won’t persist across restarts)
+const sentEmails = new Set<number>();
+
 type OrderMailRequest = {
   customerEmail: string;
   orderId: string | number;
@@ -20,6 +23,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // ✅ Check if already sent
+    const numericOrderId = Number(orderId);
+    if (sentEmails.has(numericOrderId)) {
+      return NextResponse.json({ message: 'Email already sent (server)' }, { status: 200 });
+    }
+
+    // ✅ Setup transporter
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
@@ -30,6 +40,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    // ✅ Send the email
     const mailOptions = {
       from: 'green-souss-solutions <greensousssolution@gmail.com>',
       to: customerEmail,
@@ -70,8 +81,11 @@ export async function POST(req: NextRequest) {
 
     const info = await transporter.sendMail(mailOptions);
 
+    // ✅ Mark as sent in memory
+    sentEmails.add(numericOrderId);
+
     return NextResponse.json({
-      message: 'Email sent',
+      message: 'Email sent successfully',
       id: info.messageId,
     });
   } catch (error: unknown) {
