@@ -12,12 +12,13 @@ export const DeleteButton = ({ orderId }: DeleteButtonProps) => {
 
 
   const handleDelete = async () => {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
     const confirmDelete = window.confirm("Are you sure you want to delete this order?");
     if (!confirmDelete) return;
 
     try {
         console.log('Deleting order with ID:', orderId);
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/orders/${orderId}`, {
+      const res = await fetch(`${API_URL}/api/orders/${orderId}`, {
         method: 'DELETE',
       });
 

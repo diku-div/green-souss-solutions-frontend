@@ -30,7 +30,7 @@ export default function OrderConfirmation() {
   const [submitted, setSubmitted] = useState<boolean | null>(null);
   const [orderdata, setOrderdata] = useState<Order | null>(null);
 
-  const emailSentRef = useRef(false); // ✅ Correct location for useRef
+
 
   // Fetch order data
   useEffect(() => {

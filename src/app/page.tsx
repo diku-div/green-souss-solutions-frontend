@@ -173,7 +173,7 @@ export default function Home() {
          <p className="text-black/70 font-light text-center md:text-start ">We&apos;re here to assist with your inquiries.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-         <CardEfficient icon={<Mail/>}  title="Email Us" description="Our support team is ready to assist." contact="greensoussolutions.com"/>
+         <CardEfficient icon={<Mail/>}  title="Email Us" description="Our support team is ready to assist." contact="greensoussolutions@gmail.com"/>
          <CardEfficient icon={<MessageCircle/>}  title="Call Us" description="Available Monday to Friday, 8am - 5pm." contact="+212 667794635"/>
          <CardEfficient icon={<MapPin/>}  title="Visit Us" description="Drop by our office for a chat." contact="101 Web Lane, San Francisco, CA"/>
         </div>

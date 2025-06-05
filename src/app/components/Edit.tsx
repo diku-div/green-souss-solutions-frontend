@@ -25,13 +25,15 @@ export default function Edit() {
   const [statusFilter, setStatusFilter] = useState<string>('pending');
    const router = useRouter();
 
+                const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
+
   useEffect(() => {
     const fetchOrder = async () => {
       try {
        
-         
+
          console.log('Fetching order for id:', id);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/orders/${id}`, {
+        const res = await fetch(`${API_URL}/api/orders/${id}`, {
           credentials: 'include',
         });
 
@@ -58,7 +60,7 @@ export default function Edit() {
   const updateStatus = async (newStatus: string) => {
     try {
       
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/orders/${id}/status`, {
+      const res = await fetch(`${API_URL}/api/orders/${id}/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

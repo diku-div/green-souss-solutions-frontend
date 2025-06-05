@@ -22,17 +22,21 @@ type Order = {
   status: string;
 };
 
+
+
 const Orders: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [statusFilter, setStatusFilter] = useState<string>('pending');
   const [orderId, setOrderId] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
+               const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
+
 
   useEffect(() => {
     async function fetchByStatus(status: string) {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/orders/status/${status}`);
+        const res = await fetch(`${API_URL}/api/orders/status/${status}`);
         const data = await res.json();
         setOrders(data);
       } catch (err) {
@@ -59,7 +63,7 @@ const Orders: React.FC = () => {
   };
      const handleSearch = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/orders/${orderId}`);
+      const res = await fetch(`${API_URL}/api/orders/${orderId}`);
       if (!res.ok) throw new Error('Order not found');
       // If found, redirect to edit page
       router.push(`/orders/${orderId}`);

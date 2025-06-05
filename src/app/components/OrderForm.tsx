@@ -38,15 +38,16 @@ export default function OrderForm() {
     }));
   }, [form.quantite]);
   
+               const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-
+ 
 
     try {
       
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/order`, {
+      const res = await fetch(`${API_URL}/api/order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -18,6 +18,7 @@ interface props {
 
 const Profile = () => {
   const [admin, setAdmin] = useState<props| null>(null);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
 
 
   
@@ -25,7 +26,7 @@ const Profile = () => {
     async function fetchOrder() {
       try {
         
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/1`);
+        const res = await fetch(`${API_URL}/api/admin/1`);
         if (!res.ok) throw new Error('Failed to fetch order');
         const data = await res.json();
         setAdmin(data);

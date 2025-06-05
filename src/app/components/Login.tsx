@@ -14,11 +14,11 @@ export default function Login() {
   e.preventDefault();
   setError('');
 
-  try {
- 
 
+               const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
+  try {
     // 2. Login (use /login — not /api/login)
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
+    const res = await fetch(`${API_URL}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

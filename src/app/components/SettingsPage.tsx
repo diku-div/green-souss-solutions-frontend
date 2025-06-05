@@ -36,12 +36,13 @@ export default function SettingsPage() {
   });
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
 
   // get  admin data
   useEffect(() => {
     async function fetchAdmin() {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/1`);
+        const res = await fetch(`${API_URL}/api/admin/1`);
         if (!res.ok) throw new Error('Failed to fetch admin data');
         const data = await res.json();
         setFormData(data);
@@ -73,7 +74,7 @@ const handleSubmit = async (e: FormEvent) => {
 
   try {
     const token = localStorage.getItem("token"); // optional, if needed
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/profile/1`, {
+    const res = await fetch(`${API_URL}/api/admin/profile/1`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -105,7 +106,7 @@ const handleSubmit = async (e: FormEvent) => {
       alert('New password and confirmation do not match.');
       return;
     }
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/password`, {
+    const res = await fetch(`${API_URL}/api/admin/password`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -139,7 +140,7 @@ const handleSubmit = async (e: FormEvent) => {
     const formData = new FormData();
     formData.append("picture_url", file);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/profile/picture/1`, {
+      const res = await fetch(`${API_URL}/api/admin/profile/picture/1`, {
         method: "POST",
         body: formData,
       });

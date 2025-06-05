@@ -31,12 +31,12 @@ export default function OrderDetails() {
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-
+               const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
   useEffect(() => {
     async function fetchOrder() {
       try {
         setLoading(true);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tracking/${id}`);
+        const res = await fetch(`${API_URL}/api/tracking/${id}`);
         if (!res.ok) throw new Error('Failed to fetch order');
         const data = await res.json();
         setOrder(data);
