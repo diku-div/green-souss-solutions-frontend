@@ -55,7 +55,7 @@ const Profile = () => {
       <div className="bg-white/70 rounded-xl shadow p-6 flex items-center gap-4">
         <div className="relative">
           <Image
-                 src={`${process.env.NEXT_PUBLIC_API_URL}/storage/${admin.picture_url}`}
+                 src={`${process.env.NEXT_PUBLIC_API_URL}/storage/admin_pictures/${admin.picture_url}`}
             alt="Profile"
             className="md:w-20 md:h-20  w-15 h-15 rounded-full object-cover"
           />

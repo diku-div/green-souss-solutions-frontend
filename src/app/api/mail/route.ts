@@ -1,8 +1,11 @@
-import nodemailer from 'nodemailer';
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
-// ✅ Server-side memory to track sent emails (won’t persist across restarts)
+// ✅ Server-side memory (non-persistent)
 const sentEmails = new Set<number>();
+
+// ✅ Initialize Resend
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 type OrderMailRequest = {
   customerEmail: string;
@@ -23,70 +26,50 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // ✅ Check if already sent
+    // ✅ Prevent duplicate email per orderId
     const numericOrderId = Number(orderId);
     if (sentEmails.has(numericOrderId)) {
-      return NextResponse.json({ message: 'Email already sent (server)' }, { status: 200 });
+      return NextResponse.json(
+        { message: 'Email already sent (server)' },
+        { status: 200 }
+      );
     }
 
-    // ✅ Setup transporter
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: process.env.SMTP_SECURE === 'true',
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
+    // ✅ Prepare email content
+    const htmlContent = `
+      <section style="max-width: 600px; font-family: sans-serif; padding: 16px; margin: auto;">
+        <h1 style="font-size: 24px;">Green Souss Solutions</h1>
+        <main style="margin-top: 24px;">
+          <h2 style="font-size: 20px; margin-bottom: 16px;">Thank you ${customerfullname} for your order,</h2>
+          <p>We appreciate your purchase and are excited to process your order. Here are your order details:</p>
+          <ul style="margin-top: 16px;">
+            <li><strong>Order ID:</strong> ${orderId}</li>
+            <li><strong>Email:</strong> ${customerEmail}</li>
+            <li><strong>Total Price:</strong> ${totalPrice}</li>
+          </ul>
+          <p style="margin-top: 24px;">If you have any questions or need support, feel free to contact us.</p>
+        </main>
+        <footer style="margin-top: 32px; font-size: 12px; color: #666;">
+          <p>This email was sent to <a href="mailto:${customerEmail}">${customerEmail}</a> from Green Souss Solutions Company.</p>
+          <p>Contact us at <a href="mailto:greensousssolutions@gmail.com">greensousssolutions@gmail.com</a>.</p>
+          <p style="margin-top: 12px;">© ${new Date().getFullYear()} Green Souss Solutions. All Rights Reserved.</p>
+        </footer>
+      </section>
+    `;
 
-    // ✅ Send the email
-    const mailOptions = {
+    // ✅ Send email using Resend
+    const data = await resend.emails.send({
       from: 'green-souss-solutions <greensousssolution@gmail.com>',
       to: customerEmail,
       subject: `Order Confirmation - #${orderId}`,
-      html: `
-        <section class="max-w-xl p-8 mx-auto bg-white">
-          <h1 class="text-3xl font-bold">Green Souss Solutions</h1>
-          <main class="mt-8">
-            <h2 class="mt-6 text-gray-700 text-2xl font-semibold">
-              Thank you ${customerfullname} for your order,
-            </h2>
-            <p class="mt-2 text-gray-600 leading-relaxed">
-              We appreciate your purchase and are excited to process your order. Here are your order details:
-            </p>
-            <ul class="mt-4 text-gray-600 list-disc list-inside">
-              <li><strong>Order ID:</strong> ${orderId}</li>
-              <li><strong>Email:</strong> ${customerEmail}</li>
-              <li><strong>Total Price:</strong> ${totalPrice}</li>
-            </ul>
-            <p class="mt-6 text-gray-600">
-              If you have any questions or need support, feel free to contact us.
-            </p>
-          </main>
-          <footer class="mt-8">
-            <p class="text-gray-500">
-              This email was sent to
-              <a href="mailto:${customerEmail}" class="text-blue-600 underline">${customerEmail}</a>
-              from Green Souss Solutions Company. You can contact us at
-              <a href="mailto:greensousssolutions@gmail.com" class="text-blue-600 underline">greensousssolutions@gmail.com</a>.
-            </p>
-            <p class="mt-3 text-gray-500">
-              © ${new Date().getFullYear()} Green Souss Solutions. All Rights Reserved.
-            </p>
-          </footer>
-        </section>
-      `,
-    };
+      html: htmlContent,
+    });
 
-    const info = await transporter.sendMail(mailOptions);
-
-    // ✅ Mark as sent in memory
+    // ✅ Mark as sent
     sentEmails.add(numericOrderId);
 
     return NextResponse.json({
-      message: 'Email sent successfully',
-      id: info.messageId,
+      message: 'Email sent successfully'
     });
   } catch (error: unknown) {
     console.error('Error sending email:', error);

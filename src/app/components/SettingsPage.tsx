@@ -182,7 +182,7 @@ const handleSubmit = async (e: FormEvent) => {
           <div className="flex items-center space-x-4 mb-6">
              <div className="relative">
           <Image
-                 src={`${API_URL}/storage/${formData.picture_url}`}
+                 src={`${API_URL}/storage/admin_pictures/${formData.picture_url}`}
             alt="Profile"
             className="w-20 h-20 rounded-full object-cover"
           />
