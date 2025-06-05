@@ -58,12 +58,13 @@ export async function POST(req: NextRequest) {
     `;
 
     // ✅ Send email using Resend
-     await resend.emails.send({
+    const data = await resend.emails.send({
       from: 'green-souss-solutions <greensousssolution@gmail.com>',
       to: customerEmail,
       subject: `Order Confirmation - #${orderId}`,
       html: htmlContent,
     });
+    console.log('Resend email response:', data);
 
     // ✅ Mark as sent
     sentEmails.add(numericOrderId);
