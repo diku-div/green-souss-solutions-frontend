@@ -2,7 +2,7 @@
 import { Frown, Smile } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from './Button';
 
 type Order = {

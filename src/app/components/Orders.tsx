@@ -30,10 +30,11 @@ const Orders: React.FC = () => {
   const [orderId, setOrderId] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
-               const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
 
 
   useEffect(() => {
+                   const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
+
     async function fetchByStatus(status: string) {
       try {
         const res = await fetch(`${API_URL}/api/orders/status/${status}`);
@@ -62,6 +63,8 @@ const Orders: React.FC = () => {
     }
   };
      const handleSearch = async () => {
+                     const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
+
     try {
       const res = await fetch(`${API_URL}/api/orders/${orderId}`);
       if (!res.ok) throw new Error('Order not found');

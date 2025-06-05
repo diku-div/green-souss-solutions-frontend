@@ -18,14 +18,14 @@ interface props {
 
 const Profile = () => {
   const [admin, setAdmin] = useState<props| null>(null);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
 
 
   
   useEffect(() => {
     async function fetchOrder() {
       try {
-        
+          const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
+
         const res = await fetch(`${API_URL}/api/admin/1`);
         if (!res.ok) throw new Error('Failed to fetch order');
         const data = await res.json();

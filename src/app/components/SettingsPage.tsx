@@ -36,10 +36,11 @@ export default function SettingsPage() {
   });
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
 
   // get  admin data
   useEffect(() => {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
+
     async function fetchAdmin() {
       try {
         const res = await fetch(`${API_URL}/api/admin/1`);
@@ -71,6 +72,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
 const handleSubmit = async (e: FormEvent) => {
   e.preventDefault();
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
 
   try {
     const token = localStorage.getItem("token"); // optional, if needed
@@ -97,10 +99,13 @@ const handleSubmit = async (e: FormEvent) => {
 
 // password change handler
     const handleChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+
     setPasswordData({ ...passwordData, [e.target.name]: e.target.value });
   };
   const handleSubmit2 = async (e: React.FormEvent) => {
     e.preventDefault();
+            const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
+
     // ✅ Validate on the frontend
     if (passwordData?.new_password !== passwordData?.confirm_password) {
       alert('New password and confirmation do not match.');
@@ -127,11 +132,14 @@ const handleSubmit = async (e: FormEvent) => {
 
   // handle profile picture change
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      
     if (e.target.files?.length) {
       setFile(e.target.files[0]);
     }
   };
   const handleSubmit3 = async (e: FormEvent) => {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
+
     e.preventDefault();
     if (!file) {
       alert("Please select an image.");
@@ -155,6 +163,7 @@ const handleSubmit = async (e: FormEvent) => {
   };
 
 
+           const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://green-sousssolutions-backend-production-f565.up.railway.app";
 
   
   // Always render JSX after all hooks
@@ -173,7 +182,7 @@ const handleSubmit = async (e: FormEvent) => {
           <div className="flex items-center space-x-4 mb-6">
              <div className="relative">
           <Image
-                 src={`http://localhost:8000/storage/${formData.picture_url}`}
+                 src={`${API_URL}/storage/${formData.picture_url}`}
             alt="Profile"
             className="w-20 h-20 rounded-full object-cover"
           />
